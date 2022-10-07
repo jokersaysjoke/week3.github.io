@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta charset="utf-8">
+        <title>每三周任務</title>
+        <link rel="stylesheet" type="text/css" href="taipeiCity.css">
+    </head>
+    <body onclick="location.reload()">
+        
+        <div class="nav">
+            <div class="left">
+                <b>My Website</b>
+            </div>
+            <div class="right">
+                <div class="ham" onclick="openlist()">
+                    <img src="ham.png" >
+                </div>
+                <div class="item">Item 1</div>
+                <div class="item">Item 2</div>
+                <div class="item">Item 3</div>
+                <div class="item">Item 4</div>
+
+            </div>
+            <dvi id="close" onclick="closelist()"></dvi>    
+            <div id="list" >
+                <a>item1</a>>
+                <a>item2</a>>
+                <a>item3</a>>
+                <a>item4</a>>
+
+            </div>
+        </div>
+        <div class="header" >
+            <b>Welcome to MyHome</b>
+        </div>
+        <div class="main">
+            <div class="items item1"><img style="height:50px"><p></p></div>
+            <div class="items item2"><img style="height:50px"><p></p></div>
+            <div class="items item3"><img style="width: 100%;"><p class="content"></p></div>
+            <div class="items item4"><img style="width: 100%;"><p class="content"></p></div>
+            <div class="items item5"><img style="width: 100%;"><p class="content"></p></div>
+            <div class="items item6"><img style="width: 100%;"><p class="content"></p></div>
+            <div class="items item7"><img style="width: 100%;"><p class="content"></p></div>
+            <div class="items item8"><img style="width: 100%;"><p class="content"></p></div>
+            <div class="items item9"><img style="width: 100%;"><p class="content"></p></div>
+            <div class="items item10"><img style="width: 100%;"><p class="content"></p></div>
+
+        </div>
+        
+    </body>
+    <footer></footer>
+    <script>
+        function openlist(){
+            document.getElementById("list").style.display="block";
+            document.getElementById("close").style.display="block";
+
+        }
+        
+        function closelist(){
+            document.getElementById("list").style.display="none";
+            document.getElementById("close").style.display="none";
+
+        }
+
+        // fetch函式，進行ajax連線
+        fetch('https://padax.github.io/taipei-day-trip-resources/taipei-attractions-assignment.json')
+        .then(function(response){
+                return response.json();
+            }).then(function(jsonData){
+                        // console.log(data.result.results[0]);
+                        let data = jsonData.result.results;
+                        let items = document.querySelectorAll('.items');
+                        let IMG = document.querySelectorAll('img');
+                        let p = document.querySelectorAll('p');
+                        console.log(data);
+                        
+                        for(let i=0; i<items.length; i++){
+                            
+                            let https = data[i].file.split("https");
+                            let addHttps = "https" + https[1];
+                            let addStitle = document.createTextNode(data[i].stitle);
+                            IMG[i+1].src = addHttps;
+                            p[i].appendChild(addStitle);
+                            // items[i].appendChild(addStitle);
+
+                        };
+                   
+                    });
+        
+    </script>
+</html>
