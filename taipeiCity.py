@@ -1,6 +1,5 @@
 import urllib.request as request
 import json
-from winreg import DisableReflectionKey
 src="https://padax.github.io/taipei-day-trip-resources/taipei-attractions-assignment.json"
 with request.urlopen(src) as response:
     # data=response.read().decode("utf-8") 用json不用decode
